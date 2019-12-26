@@ -3,8 +3,11 @@ const Server = require('.')
 const WS = require('ws')
 const Client = require('ws-api-client')
 const Events = require('events')
+const request = require('request-promise')
 
 const port = 8834
+// const host = '0.0.0.0'
+const host  = undefined
 
 async function actions(...args){
   // console.log(...args)
@@ -15,7 +18,7 @@ test('server',t=>{
   let server,client,sessionid
   const events = new Events()
   t.test('init',async t=>{
-    server = await Server({port,channels:['public','private']},{actions},(...args)=>console.log(...args))
+    server = await Server({port,host,channels:['public','private']},{actions},(...args)=>console.log(...args))
     t.ok(server)
     t.end()
   })
@@ -36,7 +39,11 @@ test('server',t=>{
     t.ok(client)
     t.end()
   })
-
+  t.test('get',async t=>{
+    const result = await request.get(`http://localhost:${port}`)
+    console.log(result)
+    t.end()
+  })
   t.test('call',async t=>{
     const result = await client.actions.public('test',1,2,3)
     sessionid=result[0]
