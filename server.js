@@ -11,7 +11,7 @@ module.exports = async (config,libs={},emit=x=>x) => {
   assert(actions,'requies actions function')
   const {
     port,
-		host='localhost',
+    host='0.0.0.0',
     channels,
     ...wsConfig
   } = config
