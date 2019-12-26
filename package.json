@@ -1,0 +1,16 @@
+{
+  "name": "openservice-ws-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "highland": "^2.13.5",
+    "lodash": "^4.17.15",
+    "nuid": "^1.1.0",
+    "ws": "^7.2.1"
+  },
+  "devDependencies": {
+    "tape": "^4.12.0"
+  }
+}
