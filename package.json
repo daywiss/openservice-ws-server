@@ -6,7 +6,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "highland": "^2.13.5",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "nuid": "^1.1.0",
     "ws": "^7.2.1"
   },
