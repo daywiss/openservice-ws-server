@@ -388,6 +388,11 @@ lodash@^4.17.15:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
+lodash@^4.17.19:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
+
 mime-db@1.42.0:
   version "1.42.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.42.0.tgz#3e252907b4c7adb906597b4b65636272cf9e7bac"
@@ -407,15 +412,15 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@~1.2.0:
+minimist@^1.2.0, minimist@~1.2.0:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-nuid@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/nuid/-/nuid-1.1.0.tgz#e0c5746350a25562f58283197f34c50861f44675"
-  integrity sha512-C/JdZ6PtCqKsCEs4ni76nhBsdmuQgLAT/CTLNprkcLViDAnkk7qx5sSA8PVC2vmSsdBlSsFuGb52v6pwn1oaeg==
+nuid@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/nuid/-/nuid-1.1.4.tgz#6145710b6cc9ef0df7b94af09c6d750925939097"
+  integrity sha512-PXiYyHhGfrq8H4g5HyC8enO1lz6SBe5z6x1yx/JG4tmADzDGJVQy3l1sRf3VtEvPsN8dGn9hRFRwDKWL62x0BA==
 
 oauth-sign@~0.9.0:
   version "0.9.0"
@@ -693,7 +698,27 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
+"ws-api-client@https://github.com/daywiss/ws-api-client#2.0.2":
+  version "2.0.2"
+  resolved "https://github.com/daywiss/ws-api-client#1ca7bb764fa0a075b4a50cfe5f3ffc86319dfebf"
+  dependencies:
+    minimist "^1.2.0"
+    ws "^7.2.1"
+    ynk "^0.0.2"
+
 ws@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.2.1.tgz#03ed52423cd744084b2cf42ed197c8b65a936b8e"
   integrity sha512-sucePNSafamSKoOqoNfBd8V0StlkzJKL2ZAhGQinCfNQ+oacw+Pk7lcdAElecBF2VkLNZRiIb5Oi1Q5lVUVt2A==
+
+ws@^7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
+  integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
+
+ynk@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ynk/-/ynk-0.0.2.tgz#34d6b7be96321df7ff4506441158404773ad98ed"
+  integrity sha512-ISdBJook7qthRJNjccnvW0mwXUoAGMJXIou7khDp06QQeASehFlp33OFGh1wAZiD0xmsK3cdEirDzguzsE4W+w==
+  dependencies:
+    lodash "^4.17.15"

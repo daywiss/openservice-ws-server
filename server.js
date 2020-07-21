@@ -8,7 +8,6 @@ const highland = require('highland')
 
 module.exports = async (config,libs={},emit=x=>x) => {
   const {actions} = libs
-  assert(actions,'requies actions function')
   const {
     port,
 		host,
@@ -27,12 +26,22 @@ module.exports = async (config,libs={},emit=x=>x) => {
 
   assert(config.channels && config.channels.length,'requires at least one channel')
 
-  wss.on('connection',ws=>{
+  wss.on('connection',(ws,req)=>{
     ws.id = uid.next()
     sessions.set(ws.id,ws)
     subscriptions.join(ws.id,ws)
     ws.batch = Batch(wsConfig,ws)
-    emit('connect',ws.id)
+    emit('connect',ws.id,{
+      url:req.url,
+      method:req.method,
+      upgrade:req.upgrade,
+      rawHeaders:req.rawHeaders,
+      headers:req.headers,
+      httpVersionMajor: req.httpVersionMajor,
+      httpVersionMinor: req.httpVersionMinor,
+      httpVersion: req.httpVersion,
+      complete: req.complete,
+    })
 
     ws.on('message',data=>{
       if(data == null || data.length == 0) return
@@ -46,10 +55,7 @@ module.exports = async (config,libs={},emit=x=>x) => {
 		})
 
 		ws.on('close',x=>{
-      ws.batch.destroy()
-      sessions.delete(ws.id)
-			subscriptions.remove(ws)
-      emit('disconnect',ws.id)
+      closeSession(ws.id)
 		})
 
     ws.on('error',err=>{
@@ -59,7 +65,6 @@ module.exports = async (config,libs={},emit=x=>x) => {
 
   await new Promise((res,rej)=>{
     server.listen({port,host},x=>{
-      // console.log('listening',port,host,x)
       if(x) return rej(x)
 			res()
     })
@@ -106,6 +111,7 @@ module.exports = async (config,libs={},emit=x=>x) => {
     //we need to not run the action if we do not detect the 
     //session existing, same on return data
     try{
+      assert(actions,'no actions defined')
       const result = await actions(ws.id,channel,action,args)
       if(!sessions.has(ws.id)) return
       return ws.batch.response(channel,id,result)
@@ -128,10 +134,17 @@ module.exports = async (config,libs={},emit=x=>x) => {
   }
 
   function send(channel,sessionid,args){
-    // assert(channels.has(channel),'No channel: ' + channel)
     if(!sessions.has(sessionid)) return
     sessions.get(sessionid).batch.event(channel,args)
-    // return channels.get(channel).send(sessionid,args)
+  }
+
+  function closeSession(sessionid){
+    const ws = sessions.get(sessionid)
+    ws.close()
+    ws.batch.destroy()
+    sessions.delete(ws.id)
+    subscriptions.remove(ws)
+    emit('disconnect',ws.id)
   }
 
   function close(){
@@ -144,6 +157,7 @@ module.exports = async (config,libs={},emit=x=>x) => {
     unsubscribe,
     send,
     close,
+    closeSession,
   }
 
 }

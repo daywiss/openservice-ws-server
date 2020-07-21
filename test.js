@@ -24,7 +24,7 @@ test('server',t=>{
   })
   t.test('connect',async t=>{
     client = await Client(WS,{
-      host:`http://localhost:${port}`,
+      host:`http://localhost:${port}/blah/blah?blah=blah`,
       channels:['public','private']
     },(...args)=>events.emit(...args));
 
