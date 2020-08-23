@@ -151,6 +151,10 @@ module.exports = async (config,libs={},emit=x=>x) => {
     return new Promise(res=>server.close(res))
   }
 
+  function hasSession(sessionid){
+    return sessions.has(sessionid)
+  }
+
   return {
     publish,
     subscribe,
@@ -158,6 +162,7 @@ module.exports = async (config,libs={},emit=x=>x) => {
     send,
     close,
     closeSession,
+    hasSession,
   }
 
 }
