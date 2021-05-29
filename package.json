@@ -8,7 +8,7 @@
     "highland": "^2.13.5",
     "lodash": "^4.17.20",
     "nuid": "^1.1.4",
-    "ws": "^7.4.0"
+    "ws": "^7.4.6"
   },
   "scripts": {
     "lint": "prettier ./*.js --write && eslint --fix ./*.js"
